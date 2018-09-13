@@ -1,0 +1,13 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.todoContainer{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.todoItem{
+  text-decoration: line-through;
+}
