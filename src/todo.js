@@ -5,10 +5,10 @@ import 'antd/dist/antd.css';
 class TodoItem extends Component {
     
     remove = () => {
-        this.props.removeTodo(this.props.todo.index);
+        this.props.removeTodo(this.props.todo);
     };
     check = () => {
-        this.props.checkTodo(this.props.todo.index);
+        this.props.checkTodo(this.props.todo);
     };
     render() {
         return (
@@ -44,7 +44,6 @@ export default class Todo extends Component {
 
     handlePressEnter = e => {
         const todo = {
-            index: this.state.todoes.length,
             content: e.target.value,
             checked: false,
         };
@@ -58,22 +57,17 @@ export default class Todo extends Component {
         e.target.value = "";
     }
 
-    removeTodo = index => {
-        let newTodoes = this.state.todoes;
-        newTodoes.splice(index, 1);
-
-       for (let i = index; i < newTodoes.length; i++){
-           newTodoes[i].index -= 1;
-       }
-
+    removeTodo = todo => {
+        const { todoes } = this.state;
+        todoes.splice(todoes.indexOf(todo), 1);
         this.setState({
-            todoes: newTodoes
+            todoes: todoes
         });
     }
 
-    checkTodo = index => {
+    checkTodo = todo => {
         let newTodoes = this.state.todoes;
-        newTodoes[index].checked = !newTodoes[index].checked;
+        todo.checked = !todo.checked;
 
         this.setState({
             todoes: newTodoes
